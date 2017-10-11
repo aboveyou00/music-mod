@@ -1,0 +1,23 @@
+{
+    "result": {
+        "item": "musicmod:guitar_sword"
+    },
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "DQ",
+        "#D",
+        "# "
+    ],
+    "key": {
+        "Q": {
+            "item": "minecraft:quartz_block",
+            "data": 0
+        },
+        "D": {
+            "item": "minecraft:diamond"
+        },
+        "#": {
+            "item": "minecraft:stick"
+        }
+    }
+}
