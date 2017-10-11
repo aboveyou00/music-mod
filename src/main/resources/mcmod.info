@@ -1,14 +1,14 @@
 [
 {
-  "modid": "examplemod",
-  "name": "Example Mod",
-  "description": "Example placeholder mod.",
+  "modid": "musicmod",
+  "name": "Music Mod",
+  "description": "Add a guitar sword that does more damage when used on-beat with music.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["ExampleDude"],
-  "credits": "The Forge and FML guys, for making this example",
+  "authorList": ["Brandon Slade"],
+  "credits": "None!",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []
