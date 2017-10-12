@@ -1,0 +1,9 @@
+{
+    "jump_rope": {
+        "category": "music",
+        "sounds": [{
+            "name": "musicmod:jump_rope_blue_october",
+            "stream": true
+        }]
+    }
+}

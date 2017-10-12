@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 
@@ -32,6 +33,9 @@ public class MusicMod
 
     @SidedProxy(clientSide = MusicMod.PROXY_CLIENT, serverSide = MusicMod.PROXY_SERVER)
     public static CommonProxy proxy;
+
+    public static final String networkChannelName = "MusicModNC";
+    public static SimpleNetworkWrapper network;
     
     public MusicMod()
     {

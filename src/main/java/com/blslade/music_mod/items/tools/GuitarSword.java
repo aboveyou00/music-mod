@@ -1,18 +1,27 @@
 package com.blslade.music_mod.items.tools;
 
+import com.blslade.music_mod.sounds.ModSounds;
 import com.google.common.collect.Multimap;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.PositionedSoundRecord;
+import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -79,5 +88,20 @@ public class GuitarSword extends Item
         }
 
         return multimap;
+    }
+    
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
+    {
+		ItemStack stack = player.getHeldItem(hand);
+		if (!world.isRemote)
+		{
+			for (int x = 0; x < 10; x++) System.out.println("XXXXXXXXXX");
+			ModSounds.playSoundFromServer(world, player.posX, player.posY, player.posZ, ModSounds.soundJumpRope, SoundCategory.MUSIC, 1.0f, 1.0f, false, 32.0f);
+//			SoundHandler handler = Minecraft.getMinecraft().getSoundHandler();
+//			if (musicSound == null) musicSound = new PositionedSoundRecord(ModSounds.soundJumpRope, SoundCategory.MUSIC, 1.0f, 1.0f, player.getPosition());
+//			if (!handler.isSoundPlaying(musicSound)) handler.playSound(musicSound);
+		}
+		return new ActionResult<>(EnumActionResult.PASS, stack);
     }
 }
