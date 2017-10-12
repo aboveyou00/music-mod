@@ -1,7 +1,9 @@
-package com.blslade.music_mod.client;
+package com.blslade.musicmod.client;
 
-import com.blslade.music_mod.CommonProxy;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+
+import com.blslade.musicmod.CommonProxy;
+
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;

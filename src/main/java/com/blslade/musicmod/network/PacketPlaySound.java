@@ -1,6 +1,6 @@
-package com.blslade.music_mod.network;
+package com.blslade.musicmod.network;
 
-import com.blslade.music_mod.sounds.ModSounds;
+import com.blslade.musicmod.sounds.ModSounds;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;

@@ -1,16 +1,14 @@
-package com.blslade.music_mod;
+package com.blslade.musicmod;
 
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
-import com.blslade.music_mod.blocks.ModBlocks;
-import com.blslade.music_mod.network.PacketPlaySound;
+import com.blslade.musicmod.blocks.ModBlocks;
+import com.blslade.musicmod.network.PacketPlaySound;
 
-import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class CommonProxy

@@ -1,7 +1,7 @@
-package com.blslade.music_mod.items;
+package com.blslade.musicmod.items;
 
-import com.blslade.music_mod.MusicMod;
-import com.blslade.music_mod.items.tools.GuitarSword;
+import com.blslade.musicmod.MusicMod;
+import com.blslade.musicmod.items.tools.GuitarSword;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;

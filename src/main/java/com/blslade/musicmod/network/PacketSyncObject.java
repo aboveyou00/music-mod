@@ -1,4 +1,4 @@
-package com.blslade.music_mod.network;
+package com.blslade.musicmod.network;
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;

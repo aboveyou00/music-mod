@@ -1,4 +1,4 @@
-package com.blslade.music_mod;
+package com.blslade.musicmod;
 
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -10,9 +10,9 @@ import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 
-import com.blslade.music_mod.blocks.ModBlocks;
-import com.blslade.music_mod.items.ModItems;
-import com.blslade.music_mod.sounds.ModSounds;
+import com.blslade.musicmod.blocks.ModBlocks;
+import com.blslade.musicmod.items.ModItems;
+import com.blslade.musicmod.sounds.ModSounds;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -25,8 +25,8 @@ public class MusicMod
     public static final String MODID = "musicmod";
     public static final String VERSION = "1.0";
 
-    public static final String PROXY_CLIENT = "com.blslade.music_mod.client.ClientProxy";
-    public static final String PROXY_SERVER = "com.blslade.music_mod.CommonProxy";
+    public static final String PROXY_CLIENT = "com.blslade.musicmod.client.ClientProxy";
+    public static final String PROXY_SERVER = "com.blslade.musicmod.CommonProxy";
 
     @Mod.Instance(MusicMod.MODID)
     public static MusicMod instance;

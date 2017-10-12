@@ -1,4 +1,4 @@
-package com.blslade.music_mod.blocks;
+package com.blslade.musicmod.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

@@ -1,7 +1,7 @@
-package com.blslade.music_mod.sounds;
+package com.blslade.musicmod.sounds;
 
-import com.blslade.music_mod.MusicMod;
-import com.blslade.music_mod.network.PacketPlaySound;
+import com.blslade.musicmod.MusicMod;
+import com.blslade.musicmod.network.PacketPlaySound;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
