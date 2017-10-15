@@ -1,6 +1,12 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "musicmod:items/guitar_sword"
-    }
+        "layer0": "musicmod:items/guitar_sword0"
+    },
+    "overrides": [
+        { "predicate": { "volume": 0.00 }, "model": "musicmod:item/guitar_sword" },
+        { "predicate": { "volume": 0.25 }, "model": "musicmod:item/guitar_sword1" },
+        { "predicate": { "volume": 0.50 }, "model": "musicmod:item/guitar_sword2" },
+        { "predicate": { "volume": 0.75 }, "model": "musicmod:item/guitar_sword3" }
+    ]
 }

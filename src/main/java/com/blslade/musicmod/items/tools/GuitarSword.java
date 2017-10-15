@@ -1,5 +1,7 @@
 package com.blslade.musicmod.items.tools;
 
+import javax.annotation.Nullable;
+
 import com.blslade.musicmod.sounds.ModSounds;
 import com.google.common.collect.Multimap;
 
@@ -7,16 +9,20 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -33,6 +39,24 @@ public class GuitarSword extends Item
 		this.attackDamage = 6;
 		this.setUnlocalizedName(name);
 		this.setRegistryName(name);
+		this.initProperties();
+	}
+	
+	private void initProperties()
+	{
+        this.addPropertyOverride(new ResourceLocation("volume"), new IItemPropertyGetter()
+        {
+        	@SideOnly(Side.CLIENT)
+            float previousVolume = 0;
+        	
+            @SideOnly(Side.CLIENT)
+            public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
+            {
+                float volume = previousVolume + .025f;
+                previousVolume = volume;
+                return Math.abs((volume % 2.0f) - 1.0f);
+            }
+        });
 	}
 
     private final float attackDamage;
