@@ -78,10 +78,7 @@ public class GuitarSword extends Item
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
             {
-            	long systemTime = Minecraft.getSystemTime();
-            	int currentFrame = (int)Math.floor(((float)(systemTime - GuitarSword.lastPlayTime) / 1000) * 30);
-            	if (currentFrame >= musicVolumes.length) return 0;
-            	return musicVolumes[currentFrame];
+            	return GuitarSword.this.getCurrentMusicVolume();
             }
         });
 	}
@@ -90,7 +87,8 @@ public class GuitarSword extends Item
 
     public float getDamageVsEntity()
     {
-        return this.attackDamage;
+    	float volume = this.getCurrentMusicVolume();
+        return this.attackDamage * ((volume * 2) + 0.5f);
     }
 
     public float getStrVsBlock(ItemStack stack, IBlockState state)
@@ -139,6 +137,13 @@ public class GuitarSword extends Item
     }
     
     public static long lastPlayTime = 0;
+    private float getCurrentMusicVolume()
+    {
+    	long systemTime = Minecraft.getSystemTime();
+    	int currentFrame = (int)Math.floor(((float)(systemTime - GuitarSword.lastPlayTime) / 1000) * 30);
+    	if (currentFrame >= musicVolumes.length) return 0;
+    	return musicVolumes[currentFrame];
+    }
     
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
