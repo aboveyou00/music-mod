@@ -1,15 +1,22 @@
 package com.blslade.musicmod.items.tools;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import javax.annotation.Nullable;
 
 import com.blslade.musicmod.sounds.ModSounds;
 import com.google.common.collect.Multimap;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -40,21 +47,41 @@ public class GuitarSword extends Item
 		this.setUnlocalizedName(name);
 		this.setRegistryName(name);
 		this.initProperties();
+		
+		ResourceLocation loc = new ResourceLocation("musicmod:sounds/jump_rope_blue_october.data.txt");
+		try
+		{
+			InputStream in = Minecraft.getMinecraft().getResourceManager().getResource(loc).getInputStream();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+			Gson gson = new Gson();
+			JsonArray arr = gson.fromJson(reader, JsonArray.class);
+			int len = arr.size();
+			this.musicVolumes = new float[len];
+			for (int q = 0; q < len; q++)
+			{
+				this.musicVolumes[q] = arr.get(q).getAsFloat();
+			}
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+			this.musicVolumes = new float[] { 0 };
+		}
 	}
+	
+	private float[] musicVolumes;
 	
 	private void initProperties()
 	{
         this.addPropertyOverride(new ResourceLocation("volume"), new IItemPropertyGetter()
         {
-        	@SideOnly(Side.CLIENT)
-            float previousVolume = 0;
-        	
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
             {
-                float volume = previousVolume + .025f;
-                previousVolume = volume;
-                return Math.abs((volume % 2.0f) - 1.0f);
+            	long systemTime = Minecraft.getSystemTime();
+            	int currentFrame = (int)Math.floor(((float)(systemTime - GuitarSword.lastPlayTime) / 1000) * 30);
+            	if (currentFrame >= musicVolumes.length) return 0;
+            	return musicVolumes[currentFrame];
             }
         });
 	}
@@ -111,6 +138,8 @@ public class GuitarSword extends Item
         return multimap;
     }
     
+    public static long lastPlayTime = 0;
+    
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
@@ -118,6 +147,7 @@ public class GuitarSword extends Item
 		if (!world.isRemote)
 		{
 			ModSounds.playSoundFromServer(world, player.posX, player.posY, player.posZ, ModSounds.soundJumpRope, SoundCategory.MUSIC, 1.0f, 1.0f, false, 32.0f);
+			GuitarSword.lastPlayTime = Minecraft.getSystemTime();
 		}
 		return new ActionResult<>(EnumActionResult.PASS, stack);
     }

@@ -1,5 +1,6 @@
 package com.blslade.musicmod.network;
 
+import com.blslade.musicmod.items.tools.GuitarSword;
 import com.blslade.musicmod.sounds.ModSounds;
 
 import io.netty.buffer.ByteBuf;
@@ -73,6 +74,7 @@ public class PacketPlaySound implements IMessage
 
             if (event != null) {
             	Minecraft.getMinecraft().world.playSound(message.x, message.y, message.z, event, category, message.volume, message.pitch, message.distanceDelay);
+            	GuitarSword.lastPlayTime = Minecraft.getSystemTime();
             }
             else {
                 System.err.println("Unable to find sound in vanilla or DE's sound events [" + message.sound + "]");
